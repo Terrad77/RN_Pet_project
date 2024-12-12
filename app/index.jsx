@@ -6,7 +6,7 @@ import "../global.css";
 export default function App() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-3xl">Aura!</Text>
+      <Text className="text-3xl font-pblack">Aura!</Text>
       <StatusBar style="auto" />
       <Link href="profile" style={{ color: "blue" }}>
         Go to Profile
@@ -14,12 +14,3 @@ export default function App() {
     </View>
   );
 }
-
-// const style = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
