@@ -1,7 +1,7 @@
 // rnfes - снипет для начального кода шаблона, експорт функционального  RN  компонента со стилями
 import { StyleSheet, Text, View } from "react-native";
 import { Slot, Stack } from "expo-router";
-// import "../global.css";
+import "../global.css";
 
 const RootLayout = () => {
   return (

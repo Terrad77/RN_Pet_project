@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rn_pet_project",
-    "slug": "rn_app",
+    "name": "Aura",
+    "slug": "aura",
+    "scheme": "aura",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rn_app",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
