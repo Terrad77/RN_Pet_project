@@ -7,7 +7,7 @@ module.exports = function (api) {
     ],
     plugins: [
       // Required for expo-router
-      "expo-router/babel",
+      // "expo-router/babel", // Устаревший плагин
       "react-native-reanimated/plugin",
     ],
   };
