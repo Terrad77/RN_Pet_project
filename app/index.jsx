@@ -1,19 +1,22 @@
 import { StatusBar } from "expo-status-bar";
+import { Redirect, router } from "expo-router";
 import { Text, View, ScrollView, Image } from "react-native";
-import { Link } from "expo-router";
-import "../global.css";
-import { SafeAreaView } from "react-native-web";
-import { images } from "../constants";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-// import { CustomButton, Loader } from "../components";
+import { images } from "../constants";
+import CustomButton from "../components/CustomButton";
 // import { useGlobalContext } from "../context/GlobalProvider";
 
+import { Link } from "expo-router";
+import "../global.css";
+
 export default function App() {
+  //not yet
   // const { loading, isLogged } = useGlobalContext();
   // if (!loading && isLogged) return <Redirect href="/home" />;
 
   return (
-    //approach #1:
+    //------------------ approach #1: -------------------//
     // <View className="flex-1 items-center justify-center bg-white">
     //   <Text className="text-3xl font-pblack">Aora!</Text>
     //   <StatusBar style="auto" />
@@ -22,12 +25,11 @@ export default function App() {
     //   </Link>
     // </View>
 
-    // approach #2: usage SafeAreaView
+    //----------------- approach #2: usage SafeAreaView -----------//
     <SafeAreaView className="bg-primary h-full">
       {/* <Loader isLoading={loading} /> */}
-
       <ScrollView contentContainerStyle={{ height: "100%" }}>
-        <View className="w-full justify-center items-center h-full px-4">
+        <View className=" w-full justify-center items-center h-full px-4">
           <Image
             source={images.logo}
             className="w-[130px] h-[84px]"
@@ -48,25 +50,24 @@ export default function App() {
 
             <Image
               source={images.path}
-              className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
+              className="w-[136px] h-[15px] absolute -bottom-4 -right-8"
               resizeMode="contain"
             />
           </View>
 
           <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
-            Where Creativity Meets Innovation: Embark on a Journey of Limitless
+            Where creativity meets innovation: embark on a journey of limitless
             Exploration with Aora
           </Text>
 
-          {/* <CustomButton
+          <CustomButton
             title="Continue with Email"
             handlePress={() => router.push("/sign-in")}
             containerStyles="w-full mt-7"
-          /> */}
+          />
         </View>
       </ScrollView>
-
-      {/* <StatusBar backgroundColor="#161622" style="light" /> */}
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }
