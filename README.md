@@ -48,3 +48,25 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## appwrite
+
+RN_Pet_project: 67696eb20020e2602d43
+
+Apple registration
+Name: Aora
+Bundle ID: com.terrad77.rn_pet_project
+
+database: terrad77_aora
+databaseId: 6769730e002a231e7be8
+
+collections:
+users
+collectionId: 676973b6001ad88a7439
+
+videos
+collectionId: 6769745e0005ce8be9a7
+
+storage:
+files
+676978ff001f404aae5b
