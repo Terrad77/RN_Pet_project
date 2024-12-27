@@ -9,30 +9,29 @@ import { Link, router } from "expo-router";
 import { createUser } from "../../lib/appwrite";
 
 const SignUp = () => {
-  const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [isSubmitting, setisSubmitting] = useState(false);
+  const [form, setForm] = useState({ username: "", email: "", password: "" }); // default form state
+  const [isSubmitting, setisSubmitting] = useState(false); // submitting state
+
   const submit = async () => {
+    // cheking before call function createUser()
     if (!form.username || !form.email || !form.password) {
       Alert.alert("Error", "Please fill in all the fields");
+      return; // Exit the function if any field is empty
     }
     setisSubmitting(true);
 
     try {
       const result = await createUser(form.email, form.password, form.username);
 
-      // set it to global state... (usage context)
+      // in this place set result to global state... (usage context)
+
+      // using function from expo router for changin route
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
       setisSubmitting(false);
     }
-
-    createUser();
   };
 
   return (
