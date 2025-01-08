@@ -9,11 +9,12 @@ import CustomButton from "../components/CustomButton";
 
 import { Link } from "expo-router";
 import "../global.css";
+import { useGlobalContext } from "../context/GlobalProvider";
 
 export default function App() {
-  //not yet
-  // const { loading, isLogged } = useGlobalContext();
-  // if (!loading && isLogged) return <Redirect href="/home" />;
+  const { isLoading, isLoggedIn } = useGlobalContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
 
   return (
     //------------------ approach #1: -------------------//

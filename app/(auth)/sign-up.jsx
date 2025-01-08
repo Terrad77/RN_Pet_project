@@ -10,7 +10,7 @@ import { createUser } from "../../lib/appwrite";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" }); // default form state
-  const [isSubmitting, setisSubmitting] = useState(false); // submitting state
+  const [isSubmitting, setIsSubmitting] = useState(false); // submitting state
 
   const submit = async () => {
     // cheking before call function createUser()
@@ -18,19 +18,20 @@ const SignUp = () => {
       Alert.alert("Error", "Please fill in all the fields");
       return; // Exit the function if any field is empty
     }
-    setisSubmitting(true);
+
+    setIsSubmitting(true);
 
     try {
       const result = await createUser(form.email, form.password, form.username);
 
-      // in this place set result to global state... (usage context)
+      setUser(result); // set result to global state... (usage context)
+      setIsLogged(true);
 
-      // using function from expo router for changin route
-      router.replace("/home");
+      router.replace("/home"); // using function 'router' from expo-router for changin route
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setisSubmitting(false);
+      setIsSubmitting(false);
     }
   };
 

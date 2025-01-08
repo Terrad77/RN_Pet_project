@@ -1,36 +1,60 @@
-import { View, Text, ScrollView, Image, Alert } from "react-native";
 import React, { useState } from "react";
+import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, ScrollView, Image, Alert } from "react-native";
 
 import { images } from "../../constants";
 // import { CustomButton, FormField } from "../../components";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
-import { Link, router } from "expo-router";
-import { signIn } from "../../lib/appwrite";
+
+import { getCurrentUser, signIn } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignIn = () => {
-  const [isSubmitting, setisSubmitting] = useState(false); // submitting state
+  const [isSubmitting, setIsSubmitting] = useState(false); // submitting state
   const [form, setForm] = useState({ email: "", password: "" }); // default form state
+  const { setUser, setIsLogged } = useGlobalContext();
+
   const submit = async () => {
     // cheking before signIn
-    if (!form.email || !form.password) {
+    if (form.email === "" || form.password === "") {
       Alert.alert("Error", "Please enter your credentials");
       return; // Exit the function if any field is empty
     }
-    setisSubmitting(true); // changing state
+
+    setIsSubmitting(true); // changing state
 
     try {
+      // try to enter
       await signIn(form.email, form.password);
 
-      // in this place set result to global state... (usage context)
+      const result = await getCurrentUser();
+      console.log("Current user:", result); // Check user result
 
-      // using function from expo router for changin route
-      router.replace("/home");
+      setUser(result); // / Сохраняем пользователя в глобальный контекст
+      setIsLogged(true);
+
+      Alert.alert("Success", "User signed in successfully");
+
+      console.log("Redirecting to home...");
+      router.replace("/home"); // using function from expo router for changin route
     } catch (error) {
-      Alert.alert("Error", error.message);
+      console.error("Sign-in error:", error);
+      // Обработка ошибок
+      if (error.message.includes("A session is already active")) {
+        // Если уже существует сессия, просто получаем текущего пользователя
+        const result = await getCurrentUser();
+        setUser(result);
+        setIsLogged(true);
+
+        Alert.alert("Info", "You are already logged in.");
+        router.replace("/home");
+      } else {
+        Alert.alert("Error", error.message || "Failed to sign in");
+      }
     } finally {
-      setisSubmitting(false);
+      setIsSubmitting(false);
     }
   };
 
