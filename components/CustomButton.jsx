@@ -14,7 +14,10 @@ const CustomButton = ({
       className={`bg-secondary rounded-xl min-h-[62px] flex flex-row justify-center items-center 
         ${containerStyles} 
         ${isLoading ? "opacity-50" : ""}`}
-      disabled={isLoading}
+      // disabled={isLoading} // использование устаревшего pointerEvents prop напрямую
+      style={{
+        pointerEvents: isLoading ? "none" : "auto", // Disables pointer events when loading, сенсорное взаимодействие отключено когда кнопка находится в состоянии загрузки, что аналогично использованию disabled реквизит
+      }}
     >
       <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>
         {title}

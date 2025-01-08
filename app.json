@@ -28,7 +28,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png",
+      "favicon": "./assets/images/logo-small.png",
       "package": "com.terrad77.rn_pet_project"
     },
     "plugins": [
