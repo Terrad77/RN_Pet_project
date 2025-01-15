@@ -13,9 +13,10 @@ export const useGlobalContext = () => useContext(GlobalContext);
 const GlobalProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // Для отслеживания состояния загрузки
 
   useEffect(() => {
+    // Проверка текущего пользователя
     getCurrentUser()
       .then((response) => {
         if (response) {
@@ -27,7 +28,7 @@ const GlobalProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Ошибка проверки сеанса:", error);
       })
       .finally(() => {
         setIsLogged(false);

@@ -22,6 +22,7 @@ export const theme = {
       gray: {
         100: "#CDCDE0",
       },
+      customOrange: "#FFA001",
     },
     fontFamily: {
       pthin: ["Poppins-Thin", "sans-serif"],
