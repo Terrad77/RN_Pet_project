@@ -24,6 +24,7 @@ const SignIn = () => {
     }
 
     setIsSubmitting(true); // changing state
+    console.log("Sign-in with:", form.email, form.password); // Check user data
 
     try {
       // try to enter
