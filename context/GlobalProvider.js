@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  Children,
-} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { getCurrentUser } from "../lib/appwrite";
 
 const GlobalContext = createContext();

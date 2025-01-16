@@ -6,7 +6,9 @@ const VideoCard = ({
     title,
     thumbnail,
     video,
-    creator: { username, avatar },
+    avatar,
+    creator,
+    // creator: { username, avatar },
   },
 }) => {
   return (

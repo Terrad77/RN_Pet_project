@@ -18,25 +18,37 @@ import useAppwrite from "../../lib/useAppwrite";
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts); // fetch all posts
+  // const { data: latestPosts } = useAppwrite(getLatestPosts); // fetch latest posts
 
   const [refreshing, setRefreshing] = useState(false); // refresh state for FlatList
 
   // refresh function for FlatList
   const onRefresh = async () => {
     setRefreshing(true);
-    // recall videos -> if any new video is uploaded
-    await refetch();
+    await refetch(); // recall videos -> if any new video is uploaded
     setRefreshing(false);
   };
 
-  console.log(posts);
+  console.log("posts:", posts);
 
+  // one flatlist
+  // with list header
+  // and horizontal flatlist
+  // can`t do usage just scrollview as there's both horizontal and vertical scroll (two flat lists, within trending)
   return (
     <SafeAreaView className="bg-primary  h-full">
       <FlatList
-        data={[{ id: 1 }, { id: 2 }, { id: 3 }]} // add media data in this array
+        data={posts} // add media data in this array
         keyExtractor={(item) => item.$id}
-        renderItem={({ item }) => <VideoCard video={item} />}
+        renderItem={({ item }) => (
+          <VideoCard
+            title={item.title}
+            thumbnail={item.thumbnail}
+            video={item.video}
+            creator={item.creator.username}
+            avatar={item.creator.avatar}
+          />
+        )}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
             <View className="justify-between items-start flex-row mb-6">
@@ -48,6 +60,7 @@ const Home = () => {
                   Terrad77
                 </Text>
               </View>
+
               <View className="mt-1.5">
                 <Image
                   source={images.logoSmall}
@@ -56,12 +69,15 @@ const Home = () => {
                 />
               </View>
             </View>
+
             <SearchInput />
+
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-gray-100 text-lg font-pregular mb-3">
                 Latest Videos
               </Text>
-              <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
+
+              <Trending posts={posts ?? []} />
             </View>
           </View>
         )}
@@ -71,7 +87,7 @@ const Home = () => {
             subtitle="be the first to upload a video"
           />
         )}
-        refreshiControl={
+        refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
