@@ -14,7 +14,7 @@ import { useGlobalContext } from "../../context/GlobalProvider";
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false); // submitting state
   const [form, setForm] = useState({ email: "", password: "" }); // default form state
-  const { setUser, setIsLogged } = useGlobalContext();
+  const { setUser, setIsLogged } = useGlobalContext(); // usage global context
 
   const submit = async () => {
     // cheking before signIn
@@ -33,7 +33,7 @@ const SignIn = () => {
       const result = await getCurrentUser();
       console.log("Current user:", result); // Check user result
 
-      setUser(result); // / Сохраняем пользователя в глобальный контекст
+      setUser(result); // Сохраняем пользователя в глобальный контекст
       setIsLogged(true);
 
       Alert.alert("Success", "User signed in successfully");

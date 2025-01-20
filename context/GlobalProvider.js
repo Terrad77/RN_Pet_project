@@ -22,10 +22,10 @@ const GlobalProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log("Ошибка проверки сеанса:", error);
+        console.error("Errorr cheking session:", error.message || error);
       })
       .finally(() => {
-        setIsLogged(false);
+        setIsLoading(false); // Завершение процесса загрузки
       });
   }, []);
 

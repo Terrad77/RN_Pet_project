@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import { View, Text, Image } from "react-native";
 import { Tabs, Redirect } from "expo-router";
 import { icons } from "../../constants";
@@ -23,6 +23,10 @@ const TabIcon = ({ icon, color, name, focused }) => {
 };
 
 const TabsLayuot = () => {
+  // Проверка isLogged перед рендером
+  // if (!isLogged) {
+  //   return <Redirect href="/sign-in" />; // Перенаправление на страницу входа
+  // }
   return (
     <>
       <Tabs
@@ -53,6 +57,7 @@ const TabsLayuot = () => {
             ),
           }}
         />
+
         <Tabs.Screen
           name="bookmark"
           options={{

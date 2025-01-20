@@ -41,13 +41,7 @@ const Home = () => {
         data={posts} // add media data in this array
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
-          <VideoCard
-            title={item.title}
-            thumbnail={item.thumbnail}
-            video={item.video}
-            creator={item.creator.username}
-            avatar={item.creator.avatar}
-          />
+          <VideoCard video={item} /> // pass video data to VideoCard component
         )}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
@@ -76,7 +70,6 @@ const Home = () => {
               <Text className="text-gray-100 text-lg font-pregular mb-3">
                 Latest Videos
               </Text>
-
               <Trending posts={posts ?? []} />
             </View>
           </View>

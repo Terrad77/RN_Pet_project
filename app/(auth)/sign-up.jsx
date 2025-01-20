@@ -19,19 +19,20 @@ const SignUp = () => {
       return; // Exit the function if any field is empty
     }
 
-    setIsSubmitting(true);
+    setIsSubmitting(true); // at begin set submitting state to true
 
     try {
       const result = await createUser(form.email, form.password, form.username);
 
       setUser(result); // set result to global state... (usage context)
-      setIsLogged(true);
+      setIsLogged(true); // set isLogged to true... (usage context)
 
-      router.replace("/home"); // using function 'router' from expo-router for changin route
+      console.log("Navigating to /home..."); // for debugging
+      router.replace("/home"); // changin route by using function 'router' from expo-router
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false); // anyway set submitting state to false
     }
   };
 
