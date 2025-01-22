@@ -13,12 +13,12 @@ import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
 import VideoCard from "../../components/VideoCard";
-import { getAllPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts); // fetch all posts
-  // const { data: latestPosts } = useAppwrite(getLatestPosts); // fetch latest posts
+  const { data: latestPosts } = useAppwrite(getLatestPosts); // fetch latest posts
 
   const [refreshing, setRefreshing] = useState(false); // refresh state for FlatList
 
@@ -70,7 +70,8 @@ const Home = () => {
               <Text className="text-gray-100 text-lg font-pregular mb-3">
                 Latest Videos
               </Text>
-              <Trending posts={posts ?? []} />
+
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}
