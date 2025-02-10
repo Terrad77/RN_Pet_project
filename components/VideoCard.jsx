@@ -14,29 +14,32 @@ const VideoCard = ({
   const [play, setPlay] = useState(false); // state to play video
 
   return (
-    <View className=" flex-col  px-4 mb-14 items-start  ">
-      <View className="flex-row gap-3 items-center">
-        <View className="justify-center items-center flex-row flex-1">
+    <View className=" flex flex-col py-2  px-4 mb-14 items-center  overflow-hidden ">
+      <View className="flex flex-row space-between w-full">
+        <View className="flex justify-center items-center flex-row flex-1 ">
           <View className="w-[46px] h-[46px] rounded-lg border border-secondary justify-center items-center p-0.5">
             <Image
               source={{ uri: avatar }}
-              className="w-full h-full rounded-lg"
+              className="w-full h-full rounded-lg bg-white"
               resizeMode="cover"
             />
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1">
             <Text
-              className="text-white font-pregular text-sm"
+              className="text-white font-pregular text-lg"
               numberOfLines={1}
             >
               {title}
             </Text>
-            <Text className="text-xs text-gray-100 font-preular numberOfLines={1}">
+            <Text
+              className="text-sm text-gray-100 font-psemibold"
+              numberOfLines={1}
+            >
               {username}
             </Text>
           </View>
         </View>
-        <View classname="pt-2">
+        <View classname="pt-2 ">
           <Image source={icons.menu} className="w-5 h-5" resizeMode="contain" />
         </View>
       </View>

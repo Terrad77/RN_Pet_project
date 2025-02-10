@@ -7,8 +7,10 @@ import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from "expo-router";
 import { createUser } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignUp = () => {
+  const { setUser, setIsLogged } = useGlobalContext(); // usage global context
   const [form, setForm] = useState({ username: "", email: "", password: "" }); // default form state
   const [isSubmitting, setIsSubmitting] = useState(false); // submitting state
 
@@ -22,12 +24,13 @@ const SignUp = () => {
     setIsSubmitting(true); // at begin set submitting state to true
 
     try {
-      const result = await createUser(form.email, form.password, form.username);
+      const result = await createUser(form.email, form.password, form.username); // call function createUser() from lib/appwrite.js
 
       setUser(result); // set result to global state... (usage context)
       setIsLogged(true); // set isLogged to true... (usage context)
 
       console.log("Navigating to /home..."); // for debugging
+
       router.replace("/home"); // changin route by using function 'router' from expo-router
     } catch (error) {
       Alert.alert("Error", error.message);
