@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  Children,
-} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { getCurrentUser } from "../lib/appwrite";
 
 const GlobalContext = createContext();
@@ -28,10 +22,10 @@ const GlobalProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log("Ошибка проверки сеанса:", error);
+        console.error("Errorr cheking session:", error.message || error);
       })
       .finally(() => {
-        setIsLogged(false);
+        setIsLoading(false); // Завершение процесса загрузки
       });
   }, []);
 
