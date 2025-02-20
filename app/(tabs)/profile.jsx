@@ -24,6 +24,7 @@ const Profile = () => {
 
     router.replace("/sign-in"); // navigate to sign-in screen
   };
+  console.log("user:", user);
 
   return (
     <SafeAreaView className="bg-primary  h-full">

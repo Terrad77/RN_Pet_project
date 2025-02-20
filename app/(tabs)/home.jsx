@@ -32,6 +32,7 @@ const Home = () => {
   };
 
   console.log("posts:", posts);
+  console.log("user:", user);
 
   // one flatlist
   // with list header

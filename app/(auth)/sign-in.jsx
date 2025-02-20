@@ -32,12 +32,10 @@ const SignIn = () => {
       await signIn(form.email, form.password);
 
       const result = await getCurrentUser();
-      console.log("Current user:", result); // Check user result
 
       setUser(result); // Сохраняем пользователя в глобальный контекст
       setIsLogged(true); // Устанавливаем флаг входа в true
 
-      console.log("Redirecting to home..."); // for debugging
       router.replace("/home"); // using function from expo router for changin route
     } catch (error) {
       console.error("Sign-in error:", error);

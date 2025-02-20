@@ -29,8 +29,6 @@ const SignUp = () => {
       setUser(result); // set result to global state... (usage context)
       setIsLogged(true); // set isLogged to true... (usage context)
 
-      console.log("Navigating to /home..."); // for debugging
-
       router.replace("/home"); // changin route by using function 'router' from expo-router
     } catch (error) {
       Alert.alert("Error", error.message);
